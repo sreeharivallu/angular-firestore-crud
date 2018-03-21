@@ -9,6 +9,7 @@ import { TileComponent } from './tile/tile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { ProfilePicComponent } from './profile-pic/profile-pic.component';
+import { MycalendarComponent } from './mycalendar/mycalendar.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ProfilePicComponent } from './profile-pic/profile-pic.component';
     TileComponent,
     ProfileComponent,
     SideNavComponent,
-    ProfilePicComponent
+    ProfilePicComponent,
+    MycalendarComponent
   ],
   imports: [
     BrowserModule,
