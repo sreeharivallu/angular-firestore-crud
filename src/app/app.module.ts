@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { TileComponent } from './tile/tile.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { ProfilePicComponent } from './profile-pic/profile-pic.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { ProfileComponent } from './profile/profile.component';
     AppComponent,
     AppNavbarComponent,
     TileComponent,
-    ProfileComponent
+    ProfileComponent,
+    SideNavComponent,
+    ProfilePicComponent
   ],
   imports: [
     BrowserModule,
