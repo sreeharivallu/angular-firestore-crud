@@ -1,0 +1,74 @@
+
+<div class="container">
+    
+    <section class="jumbotron">
+        <header>
+            <h3> Skills </h3>
+            <div class="edit" >
+                <h5 (click)="mymodal.show()"> Add new skill</h5>
+                <a (click)="editSkill()"> <i class="fa fa-2x fa-edit" aria-hidden="true"></i> </a>
+            </div>
+        </header>
+        
+    </section>
+
+    <section class="jumbotron">
+        <header>
+            <h3> Achievements</h3>
+            <div class="edit">
+                <h5 (click)="addNewAchievement()"> Add new Achievement</h5>
+                <a (click)="editAchivement()"> <i class="fa fa-2x fa-edit"></i> </a>
+            </div>
+        </header>
+    </section>
+</div>
+
+
+<app-mymodal #mymodal>
+<div class="app-modal-header">
+    header
+</div>
+<div class="app-modal-body">
+    <form (ngSubmit)=onSubmit(f) #f="ngForm">
+        <div class="form-group">
+            <label for="skill">skill:</label>
+            <input type="text" class="form-control" id="skill" [(ngModel)]="profile.skill" name="skill" #skill="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="level">level:</label>
+                <select class="form-control" ngModel name="level">
+                    <option *ngFor="let level of expertise" [value]="level"> 
+                        {{level}} 
+                    </option>
+                </select>
+        </div>
+        
+        <button type="button" class="btn btn-default" (click)="mymodal.hide()">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+</div>
+<div class="app-modal-footer">
+    
+</div>
+</app-mymodal>
+
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal mymodel-ts" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Achievement name</h4>        
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>        
+      </div>
+      
+      <div class="modal-body">
+        <p>Add Achievement</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
