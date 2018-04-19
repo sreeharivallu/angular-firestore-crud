@@ -29,15 +29,20 @@
     header
 </div>
 <div class="app-modal-body">
-    <form (ngSubmit)=onSubmit(f) #f="ngForm">
+    <form (ngSubmit)=onSubmit(f,mymodal) #f="ngForm" autocomplete="off">
         <div class="form-group">
             <label for="skill">skill:</label>
-            <input type="text" class="form-control" id="skill" [(ngModel)]="profile.skill" name="skill" #skill="ngModel">
+            <!--input type="text" class="form-control" id="skill" (input)="search(skill)"  [(ngModel)]="skillInput" name="skill" #skill="ngModel"-->
+            <!--input type="text" class="form-control" id="skill" (input)="search(skillInput)" [(ngModel)]="skillInput" name="skill"-->
+            <input type="text" class="form-control" id="skill" [(ngModel)]="skillInput" name="skill">
+            <!--select [ngModel]="selectedValue" (ngModelChange)="search($event.target.value)" name="skill"-->
+                <!--option *ngFor="let skill of temp_skills"> {{skill}} </option-->
+                <option *ngFor="let skill1 of skills | filter: skillInput"> {{skill1}} </option>          
         </div>
         <div class="form-group">
             <label for="level">level:</label>
-                <select class="form-control" ngModel name="level">
-                    <option *ngFor="let level of expertise" [value]="level"> 
+                <select class="form-control" ngModel name="competency">
+                    <option *ngFor="let level of expertise"> 
                         {{level}} 
                     </option>
                 </select>
