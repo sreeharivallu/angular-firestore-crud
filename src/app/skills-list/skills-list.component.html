@@ -1,3 +1,5 @@
+<!--div class="loader" [hidden]="myVar"></div-->
+<app-loading-indicator></app-loading-indicator>
 <table class='table'>
   <thead>
     <th>Name</th>
@@ -6,26 +8,27 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let skill of skillData">
+    <tr *ngFor="let skill of skillData; let i = index">
       <td>
-        <span *ngIf=!editMode> {{skill.name}} </span>
-        <input *ngIf=editMode type="text" name="name" [(ngModel)]="editSkillData.name">
+        <span *ngIf=!skill.editMode> {{skill.name}} </span>
+        <input *ngIf=skill.editMode type="text" name="name" [(ngModel)]="editSkillData.name">
       </td>
       <td> 
-        <span *ngIf=!editMode> {{skill.skill}} </span>
-        <input *ngIf=editMode type="text" name="skill" ngModel [(ngModel)]="editSkillData.skill">
+        <span *ngIf=!skill.editMode> {{skill.skill}} </span>
+        <input *ngIf=skill.editMode type="text" name="skill" [(ngModel)]="editSkillData.skill">
       </td>
       <td>
-        <span *ngIf=!editMode> {{skill.competency}} </span>
-        <input *ngIf=editMode type="text" name="competency" [(ngModel)]="editSkillData.competency">
+        <span *ngIf=!skill.editMode> {{skill.competency}} </span>
+        <input *ngIf=skill.editMode type="text" name="competency" [(ngModel)]="editSkillData.competency">
       </td>
 
       <td>
-        <div *ngIf=!editMode> 
-          <button type="button" class="btn btn-default" (click)="editUser($event)">Update</button>
+        <div *ngIf=!skill.editMode> 
+          <button type="button" class="btn btn-default" (click)="editUser($event,i)">Update</button>
+          <button type="button" class="btn btn-danger" (click)="deleteUser($event,i)">Delete</button>
         </div>
-        <div *ngIf=editMode> 
-          <button type="button" class="btn btn-default" (click)="updateUser($event)">Save</button>
+        <div *ngIf=skill.editMode> 
+          <button type="button" class="btn btn-default" (click)="updateUser($event,i)">Save</button>
         </div>
       </td>
     </tr>

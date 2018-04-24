@@ -30,6 +30,7 @@ import { FilterPipe } from './filter.pipe';
 //Services
 import { FirebaseServiceService } from './services/firebase-service.service';
 import { SkillsListComponent } from './skills-list/skills-list.component';
+import { LoadingIndicatorComponent } from './helpers/loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SkillsListComponent } from './skills-list/skills-list.component';
     MymodalComponent,
     MymodelFromTsComponent,
     FilterPipe,
-    SkillsListComponent
+    SkillsListComponent,
+    LoadingIndicatorComponent
   ],
   imports: [
     BrowserModule,

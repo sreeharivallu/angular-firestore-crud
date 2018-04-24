@@ -51,12 +51,16 @@ export class FirebaseServiceService {
   }
 
   updateData(data){
+    console.log(data);
     let docRef = this.afs.doc('users/' + data.id);
+    console.log('docref is', docRef);
     return docRef.update(data);
   }
 
   deleteData(data){
 
+    let docRef = this.afs.doc('users/' + data.id);
+    return docRef.delete();
   }
 
 }
