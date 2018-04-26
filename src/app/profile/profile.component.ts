@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FirebaseServiceService } from '../services/firebase-service.service';
+import {LoadingIndicatorComponent } from '../helpers/loading-indicator/loading-indicator.component';
 
 
 @Component({
@@ -9,10 +10,13 @@ import { FirebaseServiceService } from '../services/firebase-service.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
+  @ViewChild(LoadingIndicatorComponent)
+  private loadingIndicator : LoadingIndicatorComponent;
+
   skillInput;
   display='none';
-  expertise =  ['E0','E1','E2','E3'];
-  skills = ['nodejs', 'angularjs', 'angular 2', 'mongodb', 'html5', 'CSS3', 'sass', 'mysql', 'aws'];
+  expertise =  ['L0','L1','L2','L3']; 
   temp_skills:any;
   //@ViewChild('mymodal') public modal;
 
@@ -25,9 +29,11 @@ export class ProfileComponent implements OnInit {
     console.log(formData.value);
     this.skillInput = null;
     if(formData.value){
+      this.loadingIndicator.show();
       this.firebase_s.postData(formData.value)
       .then(res => {
         console.log(res);
+        this.loadingIndicator.hide();
         modal.hide();
       })
       .catch(err => {
@@ -56,20 +62,6 @@ export class ProfileComponent implements OnInit {
 
   onCloseHandled(){
     this.display='none'; 
-  }
-
-  search(myskill:any){
-    console.log('myskill is', myskill);
-    
-    console.log('event.value is', myskill.value);
-    
-    this.temp_skills = this.skills.filter(skill => {
-       if(skill.includes(myskill)){
-         console.log('Yes',skill);
-         return myskill;
-       }
-    });
-    console.log(this.temp_skills);
   }
 
   selectItemFromDropDown(value){

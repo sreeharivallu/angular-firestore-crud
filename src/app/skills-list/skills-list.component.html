@@ -1,5 +1,5 @@
 <!--div class="loader" [hidden]="myVar"></div-->
-<app-loading-indicator></app-loading-indicator>
+<app-loading-indicator ></app-loading-indicator>
 <table class='table'>
   <thead>
     <th>Name</th>
@@ -10,25 +10,29 @@
   <tbody>
     <tr *ngFor="let skill of skillData; let i = index">
       <td>
-        <span *ngIf=!skill.editMode> {{skill.name}} </span>
-        <input *ngIf=skill.editMode type="text" name="name" [(ngModel)]="editSkillData.name">
+        <span> {{skill.fullname}} </span>        
       </td>
       <td> 
         <span *ngIf=!skill.editMode> {{skill.skill}} </span>
         <input *ngIf=skill.editMode type="text" name="skill" [(ngModel)]="editSkillData.skill">
       </td>
       <td>
-        <span *ngIf=!skill.editMode> {{skill.competency}} </span>
-        <input *ngIf=skill.editMode type="text" name="competency" [(ngModel)]="editSkillData.competency">
+        <span *ngIf=!skill.editMode> {{skill.competency}} </span>        
+        <select *ngIf=skill.editMode class="form-control" [(ngModel)]="editSkillData.competency">
+            <option *ngFor="let level of expertise"> 
+                {{level}} 
+            </option>
+        </select>
+        <!--input *ngIf=skill.editMode type="text" name="competency" [(ngModel)]="editSkillData.competency"-->
       </td>
 
       <td>
         <div *ngIf=!skill.editMode> 
-          <button type="button" class="btn btn-default" (click)="editUser($event,i)">Update</button>
-          <button type="button" class="btn btn-danger" (click)="deleteUser($event,i)">Delete</button>
+          <button type="button" class="btn btn-default" (click)="editUser(i)">Update</button>
+          <button type="button" class="btn btn-danger" (click)="deleteUser(i)">Delete</button>
         </div>
         <div *ngIf=skill.editMode> 
-          <button type="button" class="btn btn-default" (click)="updateUser($event,i)">Save</button>
+          <button type="button" class="btn btn-default" (click)="updateUser(i)">Save</button>
         </div>
       </td>
     </tr>

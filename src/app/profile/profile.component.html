@@ -1,4 +1,4 @@
-
+<app-loading-indicator ></app-loading-indicator>
 <div class="container">
     
     <section class="jumbotron">
@@ -12,7 +12,8 @@
         
     </section>
 
-    <section class="jumbotron">
+    <!-- Below section enables a modal of different type -->
+    <!--section class="jumbotron">
         <header>
             <h3> Achievements</h3>
             <div class="edit">
@@ -20,7 +21,7 @@
                 <a (click)="editAchivement()"> <i class="fa fa-2x fa-edit"></i> </a>
             </div>
         </header>
-    </section>
+    </section-->
 </div>
 
 
@@ -31,21 +32,22 @@
 <div class="app-modal-body">
     <form (ngSubmit)=onSubmit(f,mymodal) #f="ngForm" autocomplete="off">
         <div class="form-group">
-            <label for="skill">skill:</label>
-            <!--input type="text" class="form-control" id="skill" (input)="search(skill)"  [(ngModel)]="skillInput" name="skill" #skill="ngModel"-->
-            <!--input type="text" class="form-control" id="skill" (input)="search(skillInput)" [(ngModel)]="skillInput" name="skill"-->
-            <input type="text" class="form-control" id="skill" [(ngModel)]="skillInput" name="skill">
-            <!--select [ngModel]="selectedValue" (ngModelChange)="search($event.target.value)" name="skill"-->
-                <!--option *ngFor="let skill of temp_skills"> {{skill}} </option-->
-                <option *ngFor="let skill1 of skills | filter: skillInput"> {{skill1}} </option>          
+            <label for="fullname">Name:</label>
+            <input type="text" class="form-control" placeholder="name" id="fullname" name="fullname" ngModel>   
         </div>
+        <div class="form-group">            
+            <label for="skill">skill:</label>
+            <!--input type="text" class="form-control" id="skill" (input)="search(skill)"  [(ngModel)]="skillInput" name="skill" #skill="ngModel"-->            
+            <input type="text" class="form-control" id="skill" ngModel name="skill">           
+        </div>
+
         <div class="form-group">
             <label for="level">level:</label>
-                <select class="form-control" ngModel name="competency">
-                    <option *ngFor="let level of expertise"> 
-                        {{level}} 
-                    </option>
-                </select>
+            <select class="form-control" ngModel name="competency">
+                <option *ngFor="let level of expertise"> 
+                    {{level}} 
+                </option>
+            </select>
         </div>
         
         <button type="button" class="btn btn-default" (click)="mymodal.hide()">Close</button>

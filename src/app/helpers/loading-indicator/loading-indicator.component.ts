@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loading-indicator',
@@ -7,18 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingIndicatorComponent implements OnInit {
 
-  displayValue = 'block';
+  displayValue:string;
   constructor() { }
 
   ngOnInit() {
-    this.displayValue = 'block';
+    this.displayValue = 'none';
   }
 
+  @Input()
   show(){
     this.displayValue = 'block';
   }
 
-  hide(){
+  @Input() hide(){
     this.displayValue = 'none';
   }
 }

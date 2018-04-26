@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FirebaseServiceService } from '../services/firebase-service.service';
+import {LoadingIndicatorComponent } from '../helpers/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-skills-list',
@@ -8,32 +9,38 @@ import { FirebaseServiceService } from '../services/firebase-service.service';
 })
 export class SkillsListComponent implements OnInit {
 
+  @ViewChild(LoadingIndicatorComponent)
+  private loadingIndicator : LoadingIndicatorComponent;
+
   myVar:boolean;
+  expertise =  ['L0','L1','L2','L3'];
   skillData: any = [];
   editSkillData:any = {};
   editMode:boolean = false;
+  
   constructor(private firebase_s: FirebaseServiceService) { }
 
   ngOnInit() {
+    this.loadingIndicator.show();    
     this.firebase_s.getData()
     .subscribe(res => {
       console.log('res', res);
       this.skillData = res;
+      this.loadingIndicator.hide();
       //this.myVar = true;
     });
   }
 
-  editUser(event,skill){
-    console.log('skill is', skill);
+  editUser(i){    
     console.log(this.skillData);
-    this.skillData[skill].editMode = true;
+    this.skillData[i].editMode = true;
+    this.editSkillData = this.skillData[i];
   }
 
-
-  updateUser(event,i){
-    console.log('skill', this.editSkillData);
-    console.log('update event', event);
+  updateUser(i){
+    console.log('skill', this.editSkillData);    
     delete this.skillData[i].editMode;
+    this.editSkillData = {};
 
     for(let key of Object.keys(this.editSkillData)){
 
@@ -53,7 +60,7 @@ export class SkillsListComponent implements OnInit {
     });
   }
 
-  deleteUser(event, i){
+  deleteUser(i){
     console.log('delete User');
     this.firebase_s.deleteData(this.skillData[i])
     .then(res => {
@@ -62,9 +69,8 @@ export class SkillsListComponent implements OnInit {
     })
     .catch(err => {
       console.log(err);
-    }
-
-    )
+    })
   }
+
 
 }
