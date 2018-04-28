@@ -2,12 +2,12 @@
   <div class="calendar-navs">
     <div class="month-nav">
       <button (click)="prevMonth()">&lt;</button>
-      <span class="p4">{{ currentDate.format('MMMM') }}</span>
+      <h4 class="p4">{{ currentDate.format('MMMM') }}</h4>
       <button (click)="nextMonth()">&gt;</button>
     </div>
     <div class="year-nav">
       <button (click)="prevYear()">&lt;</button>
-      <span>{{ currentDate.format('YYYY') }}</span>
+      <h4>{{ currentDate.format('YYYY') }}</h4>
       <button (click)="nextYear()">&gt;</button>
     </div>
   </div>

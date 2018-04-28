@@ -17,7 +17,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 //firebase ends
 
 import { AppComponent } from './app.component';
-import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { TileComponent } from './tile/tile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -34,8 +33,7 @@ import { LoadingIndicatorComponent } from './helpers/loading-indicator/loading-i
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AppNavbarComponent,
+    AppComponent,    
     TileComponent,
     ProfileComponent,
     SideNavComponent,
